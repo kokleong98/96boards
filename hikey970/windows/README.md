@@ -18,3 +18,4 @@ Flashing Guide
 2. Pip install pyserial.
 3. Manual add USB-Serial com ports driver.
 4. Change recovery.bat com port name (COM4).
+5. Run recovery.bat as Administrator.
