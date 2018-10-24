@@ -1,13 +1,13 @@
 Dependencies
--MediaTek USB VCOM Driver (Under github "drivers" sub-folder)
--Hikey 970 windows driver (Acquired through windows update - ADB mode)
--ADB tools (Included fastboot.exe in Git)
--python 2.7
--pyserial
+- MediaTek USB VCOM Driver (Under github "drivers" sub-folder)
+- Hikey 970 windows driver (Acquired through windows update - ADB mode)
+- ADB tools (Included fastboot.exe in Git)
+- python 2.7
+- pyserial
 
 Additional image dependencies
--boot image (eg. boot-hikey970.uefi.img)
--os image (eg. hikey970-lebian9-tf.img)
+- boot image (eg. boot-hikey970.uefi.img)
+- os image (eg. hikey970-lebian9-tf.img)
 
 Lemaker image links
 - http://mirror.lemaker.org/Hikey%20970%20Lebian.rar
