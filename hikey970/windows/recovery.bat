@@ -1,4 +1,55 @@
 @echo off
+
+REM INIT VARIABLES
+SET BOOT_IMAGE=
+SET USER_IMAGE=
+
+REM 1st parameter.
+IF "%1"=="" (
+  GOTO missinginput
+)
+IF "%2"=="" (
+  GOTO missinginput
+)
+IF NOT EXIST "%2" (
+  echo missing file: %2
+  GOTO missing_img
+)
+IF "%1"=="boot" (
+  SET BOOT_IMAGE=%2
+)
+
+IF "%1"=="userdata" (
+  SET USER_IMAGE=%2
+)
+
+REM 2nd parameter.
+IF "%3"=="" (
+  GOTO checkinput
+)
+IF "%4"=="" (
+  GOTO checkinput
+)
+IF NOT EXIST "%4" (
+  echo missing file: %4
+  GOTO missing_img
+)
+
+IF "%3"=="boot" (
+  SET BOOT_IMAGE=%4
+)
+
+IF "%3"=="userdata" (
+  SET USER_IMAGE=%4
+)
+
+:checkinput
+IF "%BOOT_IMAGE%"=="" (
+  IF "%USER_IMAGE%"=="" (
+    GOTO missinginput
+  )
+)
+
 pause
 echo "Flashing ptable "
 python hisi-idt.py -d COM4 --img1 ..\images\bootloader\sec_usb_xloader.img --img2 ..\images\bootloader\sec_usb_xloader2.img --img3 ..\images\bootloader\l-loader.bin
@@ -16,10 +67,28 @@ TIMEOUT /T 1
 fastboot flash fip ..\images\fastboot\fip.bin
 TIMEOUT /T 1
 
-echo "Flashing boot image.. "
-fastboot flash boot ..\images\boot\boot-hikey970.uefi.img
-TIMEOUT /T 1
+:main
 
-echo "Flashing rootfs image.. "
-fastboot flash userdata ..\images\os\hikey970-lebian9-tf.img
+IF NOT "%BOOT_IMAGE%"=="" (
+  echo "Flashing boot image.. "
+  fastboot flash boot "%BOOT_IMAGE%"
+  TIMEOUT /T 1
+)
+
+IF NOT "%USER_IMAGE%"=="" (
+  echo "Flashing rootfs image.. "
+  fastboot flash userdata "%USER_IMAGE%"
+)
+
+GOTO end
+
+:missing_img
+:missinginput
+echo Missing or invalid input parameters.
+echo Syntax sample: test.bat boot=boot.img userdata=os.img
+
+:end
+SET BOOT_IMAGE=
+SET USER_IMAGE=
+
 pause
