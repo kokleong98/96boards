@@ -85,7 +85,7 @@ GOTO end
 :missing_img
 :missinginput
 echo Missing or invalid input parameters.
-echo Syntax sample: test.bat boot=boot.img userdata=os.img
+echo Syntax sample: recovery.bat boot=boot.img userdata=os.img
 
 :end
 SET BOOT_IMAGE=
