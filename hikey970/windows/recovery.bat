@@ -5,42 +5,42 @@ SET BOOT_IMAGE=
 SET USER_IMAGE=
 
 REM 1st parameter.
-IF "%1"=="" (
-  GOTO missinginput
-)
 IF "%2"=="" (
   GOTO missinginput
 )
-IF NOT EXIST "%2" (
-  echo missing file: %2
+IF "%3"=="" (
+  GOTO missinginput
+)
+IF NOT EXIST "%3" (
+  echo missing file: %3
   GOTO missing_img
 )
 IF "%1"=="boot" (
-  SET BOOT_IMAGE=%2
+  SET BOOT_IMAGE=%3
 )
 
 IF "%1"=="userdata" (
-  SET USER_IMAGE=%2
+  SET USER_IMAGE=%3
 )
 
 REM 2nd parameter.
-IF "%3"=="" (
-  GOTO checkinput
-)
 IF "%4"=="" (
   GOTO checkinput
 )
-IF NOT EXIST "%4" (
-  echo missing file: %4
+IF "%5"=="" (
+  GOTO checkinput
+)
+IF NOT EXIST "%5" (
+  echo missing file: %5
   GOTO missing_img
 )
 
-IF "%3"=="boot" (
-  SET BOOT_IMAGE=%4
+IF "%4"=="boot" (
+  SET BOOT_IMAGE=%5
 )
 
-IF "%3"=="userdata" (
-  SET USER_IMAGE=%4
+IF "%4"=="userdata" (
+  SET USER_IMAGE=%5
 )
 
 :checkinput
@@ -52,7 +52,7 @@ IF "%BOOT_IMAGE%"=="" (
 
 pause
 echo "Flashing ptable "
-python hisi-idt.py -d COM4 --img1 ..\images\bootloader\sec_usb_xloader.img --img2 ..\images\bootloader\sec_usb_xloader2.img --img3 ..\images\bootloader\l-loader.bin
+python hisi-idt.py -d %1 --img1 ..\images\bootloader\sec_usb_xloader.img --img2 ..\images\bootloader\sec_usb_xloader2.img --img3 ..\images\bootloader\l-loader.bin
 TIMEOUT /T 1
 
 echo "Flashing ptable "
@@ -85,7 +85,7 @@ GOTO end
 :missing_img
 :missinginput
 echo Missing or invalid input parameters.
-echo Syntax sample: recovery.bat boot=boot.img userdata=os.img
+echo Syntax sample: recovery.bat COM3 boot=boot.img userdata=os.img
 
 :end
 SET BOOT_IMAGE=
