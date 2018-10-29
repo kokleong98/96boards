@@ -4,7 +4,12 @@ REM INIT VARIABLES
 SET BOOT_IMAGE=
 SET USER_IMAGE=
 
-REM 1st parameter.
+REM 1st COM port parameter.
+IF "%1"=="" (
+  GOTO missinginput
+)
+
+REM 2nd parameter.
 IF "%2"=="" (
   GOTO missinginput
 )
@@ -23,7 +28,7 @@ IF "%1"=="userdata" (
   SET USER_IMAGE=%3
 )
 
-REM 2nd parameter.
+REM 3rd parameter.
 IF "%4"=="" (
   GOTO checkinput
 )
