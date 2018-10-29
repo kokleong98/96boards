@@ -14,13 +14,13 @@ Lemaker image links
 - http://mirror.lemaker.org/hikey970-lebian-9.tar.gz
 
 Flashing Guide
-1. Download and install python 2.7.
-2. Install python 2.7 and pip install pyserial.
-3. Download boot and userdata image.
-4. Download repository https://github.com/kokleong98/96boards/ and extract to local repository.
-5. Extract boot and userdata image and copy to repository windows folder.
-6. Unzip drivers 7z package in local repository folder.
-7. Prepare for Flashing
+1.  Download and install python 2.7.
+2.  Install python 2.7 and pip install pyserial.
+3.  Download boot and userdata image.
+4.  Download repository https://github.com/kokleong98/96boards/ and extract to local repository.
+5.  Extract boot and userdata image and copy to repository windows folder.
+6.  Unzip drivers 7z package in local repository folder.
+7.  Prepare for Flashing
 7.1 Make sure HiKey 970 is power-off and turn switch 1, 2 and 3 on.
 7.2 Connect HiKey 970 to your Windows through USB cable.
 7.3 Power on HiKey 970 and wait Windows detect the unknown device "USB SER".
