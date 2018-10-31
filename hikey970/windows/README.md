@@ -14,8 +14,10 @@ Lemaker image links
 - http://mirror.lemaker.org/hikey970-lebian-9.tar.gz
 
 Flashing Guide
-1. Download and install python 2.7.
+1. Download python 2.7.
 2. Install python 2.7 and pip install pyserial.
+   - 2.1. Run python installer package and make sure add python to environment option is installed.
+   - 2.2. Run command "cmd" using Administrator privileges and pip install pyserial.
 3. Download boot and userdata image.
 4. Download repository https://github.com/kokleong98/96boards/ and extract to local repository.
 5. Extract boot and userdata image and copy to repository windows folder.
